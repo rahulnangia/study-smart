@@ -19,13 +19,13 @@ public class RepositoryClient {
     }
 
     public User getUser(String username){
-        com.ss.database.dto.User userDto = userDao.findUser(username);
-        return User.builder()
+        com.ss.database.dto.User userDto = userDao.findUser(username);  
+        return userDto == null ? null : User.builder()
                 .fname(userDto.getFname())
                 .lname(userDto.getLname())
                 .email(userDto.getEmail())
                 .isActive(userDto.isActive())
-                .school(School.builder().sid(userDto.getSchool().getSid()).name(userDto.getSchool().getName()).build())
+                .school(userDto.getSchool() == null ? null : School.builder().sid(userDto.getSchool().getSid()).name(userDto.getSchool().getName()).build())
                 .build();
     }
 }
