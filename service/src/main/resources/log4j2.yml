@@ -1,0 +1,35 @@
+Configuration:
+  status: warn
+
+  Appenders:
+    Console:
+      name: Console
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"
+    RollingRandomAccessFile:
+      name: RollingRandomAccessFile
+      fileName: /var/output/log/study-smart/catalog.log
+      filePattern: /var/output/log/study-smart/$${date:yyyy-MM-dd}/study-smart-%d{yyyy-MM-dd-HH}.log.gz
+      PatternLayout:
+        Pattern: "%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n"
+      Policies:
+#        SizeBasedTriggeringPolicy:
+#          size: 5KB
+        TimeBasedTriggeringPolicy:
+          interval: 1
+          modulate: true
+#        DefaultRolloverStrategy:
+#          max: 4
+
+  Loggers:
+    Root:
+      level: INFO
+      AppenderRef:
+        - ref: Console
+        - ref: RollingRandomAccessFile
+    Logger:
+      - name: org.hibernate
+        level: INFO
+      - name: com.ss
+        level: INFO
