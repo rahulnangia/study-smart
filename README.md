@@ -1,5 +1,7 @@
 # study-smart
 
+This is a web service to fetch data from SQL for the study-smart application. Its a personal application.
+
 It is a maven project. The main APP is a WAR which need to be deployed on Tomcat
 
 1. Install Tomcat
